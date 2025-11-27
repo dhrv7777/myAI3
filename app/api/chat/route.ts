@@ -8,7 +8,7 @@ import { vectorDatabaseSearch } from './tools/search-vector-database';
 
 export const maxDuration = 30;
 export async function POST(req: Request) {
-    const { messages }: { messages: UIMessage[] } = await req.json();
+    const { messages, data }: { messages: UIMessage[], data?: { userProfile?: string } } = await req.json();
 
     const latestUserMessage = messages
         .filter(msg => msg.role === 'user')
@@ -50,6 +50,7 @@ export async function POST(req: Request) {
 
                         writer.write({
                             type: 'finish',
+                            id: textId,
                         });
                     },
                 });
@@ -59,9 +60,13 @@ export async function POST(req: Request) {
         }
     }
 
+    const systemPrompt = data?.userProfile
+        ? `${SYSTEM_PROMPT}\n\nUser Profile Context:\n${data.userProfile}`
+        : SYSTEM_PROMPT;
+
     const result = streamText({
         model: MODEL,
-        system: SYSTEM_PROMPT,
+        system: systemPrompt,
         messages: convertToModelMessages(messages),
         tools: {
             webSearch,

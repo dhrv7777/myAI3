@@ -135,13 +135,16 @@ export default function Chat() {
   });
 
   function onSubmit(data: z.infer<typeof formSchema>) {
-    let textToSend = data.message;
-    if (onboardingData && messages.length <= 1) {
-      textToSend = `${textToSend}\n\n${onboardingData}`;
-      // Clear onboarding data after sending so it's not appended again
+    const messageData = onboardingData && messages.length <= 1 ? { userProfile: onboardingData } : undefined;
+
+    sendMessage({
+      text: data.message,
+      data: messageData
+    });
+
+    if (messageData) {
       setOnboardingData(null);
     }
-    sendMessage({ text: textToSend });
     form.reset();
   }
 
@@ -163,12 +166,16 @@ export default function Chat() {
   ]);
 
   const handleSuggestionClick = (suggestion: string) => {
-    let textToSend = suggestion;
-    if (onboardingData && messages.length <= 1) {
-      textToSend = `${textToSend}\n\n${onboardingData}`;
+    const messageData = onboardingData && messages.length <= 1 ? { userProfile: onboardingData } : undefined;
+
+    sendMessage({
+      text: suggestion,
+      data: messageData
+    });
+
+    if (messageData) {
       setOnboardingData(null);
     }
-    sendMessage({ text: textToSend });
   };
 
   const isWelcomeState = messages.length <= 1;
@@ -326,6 +333,9 @@ export default function Chat() {
                   />
                 </FieldGroup>
               </form>
+              <p className="text-center text-[10px] text-muted-foreground/60 mt-2 px-4">
+                Medical Disclaimer: This AI provides information for educational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment.
+              </p>
             </div>
           </div>
           <div className="w-full px-5 py-2 items-center flex justify-center text-xs text-muted-foreground font-medium opacity-70">
