@@ -31,19 +31,3 @@ export async function searchPinecone(
     const context = getContextFromSources(sources);
     return `< results > ${context} </results>`;
 }
-
-export async function upsertReport(text: string) {
-    const id = `report-${Date.now()}`;
-
-    await pineconeIndex.namespace('default').upsertRecords({
-        records: [
-            {
-                id,
-                chunk_text: text,
-                lang: 'en',
-            },
-        ],
-    });
-
-    return id;
-}
