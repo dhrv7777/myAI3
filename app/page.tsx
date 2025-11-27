@@ -158,7 +158,6 @@ export default function Chat() {
 
 
               <ChatHeaderBlock className="justify-end gap-2">
-                <AddReportDialog />
                 <Button
                   variant="outline"
                   size="sm"
@@ -191,8 +190,11 @@ export default function Chat() {
           </div>
         </div>
         <div className="fixed bottom-0 left-0 right-0 z-50 bg-linear-to-t from-background via-background/50 to-transparent dark:bg-black overflow-visible pt-13">
-          <div className="w-full px-5 pt-5 pb-1 items-center flex justify-center relative overflow-visible">
+          <div className="w-full px-5 pt-5 pb-1 items-center flex flex-col justify-center relative overflow-visible gap-2">
             <div className="message-fade-overlay" />
+            <div className="max-w-3xl w-full flex justify-end">
+              <AddReportDialog />
+            </div>
             <div className="max-w-3xl w-full">
               <form id="chat-form" onSubmit={form.handleSubmit(onSubmit)}>
                 <FieldGroup>

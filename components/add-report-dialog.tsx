@@ -53,14 +53,14 @@ export function AddReportDialog() {
             <DialogTrigger asChild>
                 <Button variant="outline" size="sm" className="cursor-pointer">
                     <Plus className="size-4" />
-                    Add Medical Report
+                    Add Medical Record
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Add Medical Report</DialogTitle>
+                    <DialogTitle>Add Medical Record</DialogTitle>
                     <DialogDescription>
-                        Paste the text from your medical report here. NutriBot will use this to provide personalized advice.
+                        Add your medical records (with dates preferred), chronic diseases, medication here. This will be saved for the future.
                     </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
