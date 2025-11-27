@@ -46,9 +46,9 @@ export async function upsertReport(text: string) {
     await pineconeIndex.namespace('default').upsertRecords([
         {
             id,
-            values: embedding,
+            values: embedding as number[],
             metadata: {
-                text,
+                text: text,
                 type: 'medical_report',
                 date: new Date().toISOString(),
             },
