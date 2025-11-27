@@ -1,4 +1,3 @@
-```
 import { Pinecone } from '@pinecone-database/pinecone';
 import { PINECONE_TOP_K } from '@/config';
 import { searchResultsToChunks, getSourcesFromChunks, getContextFromSources } from '@/lib/sources';
@@ -30,7 +29,7 @@ export async function searchPinecone(
     const chunks = searchResultsToChunks(results);
     const sources = getSourcesFromChunks(chunks);
     const context = getContextFromSources(sources);
-    return `< results > ${ context } </results>`;
+    return `< results > ${context} </results>`;
 }
 
 export async function upsertReport(text: string) {
