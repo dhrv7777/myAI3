@@ -30,10 +30,10 @@ function getDateAndTime(): string {
 
 export const DATE_AND_TIME = getDateAndTime();
 
-export const AI_NAME = "MyAI3";
+export const AI_NAME = "NutriBot";
 export const OWNER_NAME = "Dhruv & Kajal";
 
-export const WELCOME_MESSAGE = `Hello! I'm ${AI_NAME}, a creation of ${OWNER_NAME}. How may I help you?`
+export const WELCOME_MESSAGE = `Hello! I'm ${AI_NAME}, your personal nutritionist created by ${OWNER_NAME}. I can help you with diet plans, calorie tracking, and analyzing your medical reports. How can I assist you today?`
 
 export const CLEAR_CHAT_TEXT = "New";
 

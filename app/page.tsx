@@ -154,7 +154,12 @@ export default function Chat() {
                 </Avatar>
                 <p className="tracking-tight">Chat with {AI_NAME}</p>
               </ChatHeaderBlock>
-              <ChatHeaderBlock className="justify-end">
+              import {AddReportDialog} from "@/components/add-report-dialog";
+
+              // ... inside Chat component ...
+
+              <ChatHeaderBlock className="justify-end gap-2">
+                <AddReportDialog />
                 <Button
                   variant="outline"
                   size="sm"
