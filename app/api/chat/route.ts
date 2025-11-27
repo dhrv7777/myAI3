@@ -50,7 +50,6 @@ export async function POST(req: Request) {
 
                         writer.write({
                             type: 'finish',
-                            id: textId,
                         });
                     },
                 });
