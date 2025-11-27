@@ -139,7 +139,7 @@ export default function Chat() {
 
     sendMessage(
       { text: data.message },
-      { data: messageData }
+      { body: { data: messageData } }
     );
 
     if (messageData) {
@@ -170,7 +170,7 @@ export default function Chat() {
 
     sendMessage(
       { text: suggestion },
-      { data: messageData }
+      { body: { data: messageData } }
     );
 
     if (messageData) {
