@@ -35,19 +35,15 @@ export async function searchPinecone(
 export async function upsertReport(text: string) {
     const id = `report-${Date.now()}`;
 
-    await pineconeIndex.namespace('default').upsertRecords([
-        {
-            id,
-            inputs: {
-                text: text,
+    await pineconeIndex.namespace('default').upsertRecords({
+        records: [
+            {
+                id,
+                chunk_text: text,
+                lang: 'en',
             },
-            metadata: {
-                text: text,
-                type: 'medical_report',
-                date: new Date().toISOString(),
-            },
-        },
-    ]);
+        ],
+    });
 
     return id;
 }
