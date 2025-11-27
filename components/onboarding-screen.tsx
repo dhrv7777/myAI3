@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -31,9 +32,20 @@ User Profile:
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm p-4 animate-in fade-in duration-300">
             <div className="w-full max-w-lg bg-card border border-border rounded-xl shadow-2xl p-6 md:p-8 space-y-6 animate-in zoom-in-95 duration-300">
-                <div className="text-center space-y-2">
-                    <h2 className="text-2xl font-bold tracking-tight text-foreground">Welcome to WellWiser</h2>
-                    <p className="text-muted-foreground">Help us personalize your wellness journey.</p>
+                <div className="flex flex-col items-center text-center space-y-4">
+                    <div className="relative w-20 h-20 rounded-full ring-4 ring-primary/10 bg-background overflow-hidden shadow-sm">
+                        <Image
+                            src="/logo.png"
+                            alt="WellWiser Logo"
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <h2 className="text-2xl font-bold tracking-tight text-foreground">Welcome to WellWiser</h2>
+                        <p className="text-muted-foreground">Help us personalize your wellness journey.</p>
+                    </div>
                 </div>
 
                 <div className="space-y-4">

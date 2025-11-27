@@ -189,23 +189,22 @@ export default function Chat() {
         />
       )}
       <main className="w-full dark:bg-black h-screen relative">
-        <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isWelcomeState ? 'bg-transparent backdrop-blur-none' : 'bg-linear-to-b from-background via-background/80 to-transparent backdrop-blur-sm'} overflow-visible pb-20`}>
-          <div className="relative overflow-visible">
+        <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isWelcomeState ? 'bg-transparent backdrop-blur-none' : 'bg-background/95 backdrop-blur-md border-b border-border/40 shadow-sm'} overflow-visible`}>
+          <div className="relative overflow-visible py-2">
             <ChatHeader>
               <ChatHeaderBlock />
               <div className={`transition-all duration-700 ease-in-out transform ${isWelcomeState ? 'opacity-0 -translate-y-10 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
-                <ChatHeaderBlock className="justify-center items-center gap-3">
+                <ChatHeaderBlock className="justify-center items-center gap-2">
                   <Avatar
-                    className="size-12 ring-2 ring-primary shadow-md transition-transform hover:scale-105"
+                    className="size-8 ring-1 ring-primary/50 shadow-sm transition-transform hover:scale-105"
                   >
                     <AvatarImage src="/logo.png" />
                     <AvatarFallback>
-                      <Image src="/logo.png" alt="Logo" width={48} height={48} />
+                      <Image src="/logo.png" alt="Logo" width={32} height={32} />
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col items-center">
-                    <p className="text-lg font-semibold tracking-tight text-foreground">WellWiser</p>
-                    <p className="text-xs text-muted-foreground font-medium">Your Wellness Companion</p>
+                    <p className="text-sm font-semibold tracking-tight text-foreground">WellWiser</p>
                   </div>
                 </ChatHeaderBlock>
               </div>
