@@ -43,17 +43,19 @@ export async function upsertReport(text: string) {
 
     const id = `report-${Date.now()}`;
 
-    await pineconeIndex.namespace('default').upsert([
-        {
-            id,
-            values: embedding,
-            metadata: {
-                text,
-                type: 'medical_report',
-                date: new Date().toISOString(),
+    await pineconeIndex.namespace('default').upsertRecords({
+        records: [
+            {
+                id,
+                values: embedding,
+                metadata: {
+                    text,
+                    type: 'medical_report',
+                    date: new Date().toISOString(),
+                },
             },
-        },
-    ]);
+        ],
+    });
 
     return id;
 }
