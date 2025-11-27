@@ -136,6 +136,16 @@ export default function Chat() {
     toast.success("Chat cleared");
   }
 
+  const [suggestions] = useState([
+    "15-min home workout plan",
+    "Healthy Indian meals",
+    "Vitamin-A rich foods"
+  ]);
+
+  const handleSuggestionClick = (suggestion: string) => {
+    sendMessage({ text: suggestion });
+  };
+
   return (
     <div className="flex h-screen items-center justify-center font-sans dark:bg-black">
       <main className="w-full dark:bg-black h-screen relative">
@@ -143,18 +153,18 @@ export default function Chat() {
           <div className="relative overflow-visible">
             <ChatHeader>
               <ChatHeaderBlock />
-              <ChatHeaderBlock className="justify-center items-center gap-3">
+              <ChatHeaderBlock className="justify-center items-center gap-4">
                 <Avatar
-                  className="size-12 ring-2 ring-primary shadow-md transition-transform hover:scale-105"
+                  className="size-20 ring-4 ring-primary/20 shadow-xl transition-transform hover:scale-105"
                 >
                   <AvatarImage src="/logo.png" />
                   <AvatarFallback>
-                    <Image src="/logo.png" alt="Logo" width={48} height={48} />
+                    <Image src="/logo.png" alt="Logo" width={80} height={80} />
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col items-center">
-                  <p className="text-lg font-semibold tracking-tight text-foreground">WellWiser</p>
-                  <p className="text-xs text-muted-foreground font-medium">Your Wellness Companion</p>
+                  <p className="text-3xl font-bold tracking-wide text-foreground">WellWiser</p>
+                  <p className="text-sm text-muted-foreground font-medium tracking-wider uppercase">Your Wellness Companion</p>
                 </div>
               </ChatHeaderBlock>
 
@@ -173,8 +183,22 @@ export default function Chat() {
             </ChatHeader>
           </div>
         </div>
-        <div className="h-screen overflow-y-auto px-5 py-4 w-full pt-[110px] pb-[180px]">
+        <div className="h-screen overflow-y-auto px-5 py-4 w-full pt-[140px] pb-[220px]">
           <div className="flex flex-col items-center justify-end min-h-full">
+            {messages.length <= 1 && (
+              <div className="flex flex-col items-center justify-center mb-8 opacity-90 animate-in fade-in zoom-in duration-500">
+                <div className="relative w-64 h-64 mb-6">
+                  <Image
+                    src="/hero.png"
+                    alt="Wellness Hero"
+                    fill
+                    className="object-contain drop-shadow-2xl"
+                    priority
+                  />
+                </div>
+              </div>
+            )}
+
             {isClient ? (
               <>
                 <div className="w-full max-w-4xl">
@@ -193,9 +217,24 @@ export default function Chat() {
             )}
           </div>
         </div>
-        <div className="fixed bottom-0 left-0 right-0 z-50 bg-linear-to-t from-background via-background/90 to-transparent dark:bg-black overflow-visible pt-16 pb-6">
-          <div className="w-full px-6 items-center flex justify-center relative overflow-visible">
+        <div className="fixed bottom-0 left-0 right-0 z-50 bg-linear-to-t from-background via-background/90 to-transparent dark:bg-black overflow-visible pt-4 pb-6">
+          <div className="w-full px-6 items-center flex flex-col justify-center relative overflow-visible gap-4">
             <div className="message-fade-overlay" />
+
+            {messages.length <= 1 && (
+              <div className="flex flex-wrap justify-center gap-2 max-w-4xl w-full animate-in slide-in-from-bottom-4 duration-500 delay-100">
+                {suggestions.map((suggestion, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleSuggestionClick(suggestion)}
+                    className="px-4 py-2 bg-card/50 hover:bg-primary/10 border border-primary/20 hover:border-primary/50 rounded-full text-sm font-medium text-foreground/80 hover:text-primary transition-all shadow-sm backdrop-blur-sm cursor-pointer"
+                  >
+                    {suggestion}
+                  </button>
+                ))}
+              </div>
+            )}
+
             <div className="max-w-4xl w-full">
               <form id="chat-form" onSubmit={form.handleSubmit(onSubmit)}>
                 <FieldGroup>
