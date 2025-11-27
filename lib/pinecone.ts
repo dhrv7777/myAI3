@@ -1,3 +1,4 @@
+```
 import { Pinecone } from '@pinecone-database/pinecone';
 import { PINECONE_TOP_K } from '@/config';
 import { searchResultsToChunks, getSourcesFromChunks, getContextFromSources } from '@/lib/sources';
@@ -29,24 +30,18 @@ export async function searchPinecone(
     const chunks = searchResultsToChunks(results);
     const sources = getSourcesFromChunks(chunks);
     const context = getContextFromSources(sources);
-    return `< results > ${context} </results>`;
+    return `< results > ${ context } </results>`;
 }
 
-import { embed } from 'ai';
-import { openai } from '@ai-sdk/openai';
-
 export async function upsertReport(text: string) {
-    const { embedding } = await embed({
-        model: openai.embedding('text-embedding-3-small'),
-        value: text,
-    });
-
     const id = `report-${Date.now()}`;
 
     await pineconeIndex.namespace('default').upsertRecords([
         {
             id,
-            values: embedding as number[],
+            inputs: {
+                text: text,
+            },
             metadata: {
                 text: text,
                 type: 'medical_report',
