@@ -139,34 +139,39 @@ export default function Chat() {
   const [suggestions] = useState([
     "15-min home workout plan",
     "Healthy Indian meals",
-    "Vitamin-A rich foods"
+    "Vitamin-A rich foods",
+    "1 kg weight-loss in a week"
   ]);
 
   const handleSuggestionClick = (suggestion: string) => {
     sendMessage({ text: suggestion });
   };
 
+  const isWelcomeState = messages.length <= 1;
+
   return (
     <div className="flex h-screen items-center justify-center font-sans dark:bg-black">
       <main className="w-full dark:bg-black h-screen relative">
-        <div className="fixed top-0 left-0 right-0 z-50 bg-linear-to-b from-background via-background/80 to-transparent dark:bg-black overflow-visible pb-20 backdrop-blur-sm">
+        <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isWelcomeState ? 'bg-transparent backdrop-blur-none' : 'bg-linear-to-b from-background via-background/80 to-transparent backdrop-blur-sm'} overflow-visible pb-20`}>
           <div className="relative overflow-visible">
             <ChatHeader>
               <ChatHeaderBlock />
-              <ChatHeaderBlock className="justify-center items-center gap-4">
-                <Avatar
-                  className="size-20 ring-4 ring-primary/20 shadow-xl transition-transform hover:scale-105"
-                >
-                  <AvatarImage src="/logo.png" />
-                  <AvatarFallback>
-                    <Image src="/logo.png" alt="Logo" width={80} height={80} />
-                  </AvatarFallback>
-                </Avatar>
-                <div className="flex flex-col items-center">
-                  <p className="text-3xl font-bold tracking-wide text-foreground">WellWiser</p>
-                  <p className="text-sm text-muted-foreground font-medium tracking-wider uppercase">Your Wellness Companion</p>
-                </div>
-              </ChatHeaderBlock>
+              <div className={`transition-all duration-700 ease-in-out transform ${isWelcomeState ? 'opacity-0 -translate-y-10 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
+                <ChatHeaderBlock className="justify-center items-center gap-3">
+                  <Avatar
+                    className="size-12 ring-2 ring-primary shadow-md transition-transform hover:scale-105"
+                  >
+                    <AvatarImage src="/logo.png" />
+                    <AvatarFallback>
+                      <Image src="/logo.png" alt="Logo" width={48} height={48} />
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="flex flex-col items-center">
+                    <p className="text-lg font-semibold tracking-tight text-foreground">WellWiser</p>
+                    <p className="text-xs text-muted-foreground font-medium">Your Wellness Companion</p>
+                  </div>
+                </ChatHeaderBlock>
+              </div>
 
 
               <ChatHeaderBlock className="justify-end gap-2">
@@ -185,17 +190,19 @@ export default function Chat() {
         </div>
         <div className="h-screen overflow-y-auto px-5 py-4 w-full pt-[140px] pb-[220px]">
           <div className="flex flex-col items-center justify-end min-h-full">
-            {messages.length <= 1 && (
-              <div className="flex flex-col items-center justify-center mb-8 opacity-90 animate-in fade-in zoom-in duration-500">
-                <div className="relative w-64 h-64 mb-6">
+            {isWelcomeState && (
+              <div className="flex flex-col items-center justify-center mb-12 animate-in fade-in zoom-in duration-700 slide-in-from-bottom-10">
+                <div className="relative w-32 h-32 mb-6 shadow-2xl rounded-full ring-4 ring-primary/20 bg-background p-2">
                   <Image
-                    src="/hero.png"
-                    alt="Wellness Hero"
+                    src="/logo.png"
+                    alt="WellWiser Logo"
                     fill
-                    className="object-contain drop-shadow-2xl"
+                    className="object-contain p-2"
                     priority
                   />
                 </div>
+                <h1 className="text-4xl font-bold tracking-tight text-foreground mb-2 text-center">WellWiser</h1>
+                <p className="text-lg text-muted-foreground font-medium tracking-wide uppercase text-center max-w-md">Your Personal Wellness Companion</p>
               </div>
             )}
 
@@ -221,8 +228,8 @@ export default function Chat() {
           <div className="w-full px-6 items-center flex flex-col justify-center relative overflow-visible gap-4">
             <div className="message-fade-overlay" />
 
-            {messages.length <= 1 && (
-              <div className="flex flex-wrap justify-center gap-2 max-w-4xl w-full animate-in slide-in-from-bottom-4 duration-500 delay-100">
+            {isWelcomeState && (
+              <div className="flex flex-wrap justify-center gap-2 max-w-4xl w-full animate-in slide-in-from-bottom-4 duration-500 delay-200">
                 {suggestions.map((suggestion, index) => (
                   <button
                     key={index}
