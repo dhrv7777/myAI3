@@ -140,7 +140,7 @@ export default function Chat() {
     "15-min home workout plan",
     "Healthy Indian meals",
     "Vitamin-A rich foods",
-    "1 kg weight-loss in a week"
+    ".5kg weight-loss in a week"
   ]);
 
   const handleSuggestionClick = (suggestion: string) => {
@@ -192,12 +192,12 @@ export default function Chat() {
           <div className="flex flex-col items-center justify-end min-h-full">
             {isWelcomeState && (
               <div className="flex flex-col items-center justify-center mb-12 animate-in fade-in zoom-in duration-700 slide-in-from-bottom-10">
-                <div className="relative w-32 h-32 mb-6 shadow-2xl rounded-full ring-4 ring-primary/20 bg-background p-2">
+                <div className="relative w-32 h-32 mb-6 shadow-2xl rounded-full ring-4 ring-primary/20 bg-background overflow-hidden">
                   <Image
                     src="/logo.png"
                     alt="WellWiser Logo"
                     fill
-                    className="object-contain p-2"
+                    className="object-cover"
                     priority
                   />
                 </div>
