@@ -53,14 +53,14 @@ export function AddReportDialog() {
             <DialogTrigger asChild>
                 <Button variant="outline" size="sm" className="cursor-pointer">
                     <Plus className="size-4" />
-                    Add Medical Record
+                    Log Medical Record
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Add Medical Record</DialogTitle>
+                    <DialogTitle>Log Medical Record</DialogTitle>
                     <DialogDescription>
-                        Add your medical records (with dates preferred), chronic diseases, medication here. This will be saved for the future.
+                        Share your medical history—timestamps, chronic conditions, and medications—and we’ll save it for future use.
                     </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
