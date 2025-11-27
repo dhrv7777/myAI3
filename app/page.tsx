@@ -137,10 +137,10 @@ export default function Chat() {
   function onSubmit(data: z.infer<typeof formSchema>) {
     const messageData = onboardingData && messages.length <= 1 ? { userProfile: onboardingData } : undefined;
 
-    sendMessage({
-      text: data.message,
-      data: messageData
-    });
+    sendMessage(
+      { text: data.message },
+      { data: messageData }
+    );
 
     if (messageData) {
       setOnboardingData(null);
@@ -168,10 +168,10 @@ export default function Chat() {
   const handleSuggestionClick = (suggestion: string) => {
     const messageData = onboardingData && messages.length <= 1 ? { userProfile: onboardingData } : undefined;
 
-    sendMessage({
-      text: suggestion,
-      data: messageData
-    });
+    sendMessage(
+      { text: suggestion },
+      { data: messageData }
+    );
 
     if (messageData) {
       setOnboardingData(null);
